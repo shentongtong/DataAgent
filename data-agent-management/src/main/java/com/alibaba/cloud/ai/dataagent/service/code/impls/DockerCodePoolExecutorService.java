@@ -358,4 +358,8 @@ public class DockerCodePoolExecutorService extends AbstractCodePoolExecutorServi
 		}
 	}
 
+	@Override
+	public TaskResponse runTask(TaskRequestJava request) {
+		return null;
+	}
 }

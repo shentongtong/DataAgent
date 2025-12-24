@@ -30,6 +30,8 @@ public enum TextType {
 	// LLM模型爱输出```sql，那就换一个标记
 	SQL("$$$sql", "$$$"),
 
+	JAVA("$$$java", "$$$"),
+
 	// LLM模型爱输出```html，那就换一个标记
 	HTML("$$$html", "$$$"),
 

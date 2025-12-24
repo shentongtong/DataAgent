@@ -20,6 +20,7 @@ import com.alibaba.cloud.ai.dataagent.config.CodeExecutorProperties;
 import com.alibaba.cloud.ai.dataagent.service.code.impls.AiSimulationCodeExecutorService;
 import com.alibaba.cloud.ai.dataagent.service.code.impls.DockerCodePoolExecutorService;
 import com.alibaba.cloud.ai.dataagent.service.code.impls.LocalCodePoolExecutorService;
+import com.alibaba.cloud.ai.dataagent.service.codeJava.impls.LocalCodePoolJavaExecutorService;
 import com.alibaba.cloud.ai.dataagent.service.llm.LlmService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.FactoryBean;
@@ -44,6 +45,7 @@ public class CodePoolExecutorServiceFactory implements FactoryBean<CodePoolExecu
 		return switch (properties.getCodePoolExecutor()) {
 			case DOCKER -> new DockerCodePoolExecutorService(properties);
 			case LOCAL -> new LocalCodePoolExecutorService(properties);
+			case LOCAL_JAVA -> new LocalCodePoolJavaExecutorService(properties);
 			case AI_SIMULATION -> new AiSimulationCodeExecutorService(llmService);
 			default ->
 				throw new IllegalStateException("This option does not have a corresponding implementation class yet.");

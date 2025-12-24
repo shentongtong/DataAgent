@@ -138,6 +138,25 @@ public final class Constant {
 
 	public static final String PYTHON_ANALYSIS_NODE_OUTPUT = "PYTHON_ANALYSIS_NODE_OUTPUT";
 
+	//java相关
+	public static final String JAVA_GENERATE_NODE = "JAVA_GENERATE_NODE";
+
+	public static final String JAVA_EXECUTE_NODE = "JAVA_EXECUTE_NODE";
+
+	public static final String JAVA_ANALYZE_NODE = "JAVA_ANALYZE_NODE";
+
+	public static final String JAVA_IS_SUCCESS = "JAVA_IS_SUCCESS";
+
+	public static final String JAVA_TRIES_COUNT = "JAVA_TRIES_COUNT";
+
+	// If code execution succeeds, output code running result; if fails, output error
+	// information
+	public static final String JAVA_EXECUTE_NODE_OUTPUT = "JAVA_EXECUTE_NODE_OUTPUT";
+
+	public static final String JAVA_ANALYSIS_NODE_OUTPUT = "JAVA_ANALYSIS_NODE_OUTPUT";
+
+	public static final String JAVA_GENERATE_NODE_OUTPUT = "JAVA_GENERATE_NODE_OUTPUT";
+
 	// nl2sql接口预留相关
 	public static final String IS_ONLY_NL2SQL = "IS_ONLY_NL2SQL";
 

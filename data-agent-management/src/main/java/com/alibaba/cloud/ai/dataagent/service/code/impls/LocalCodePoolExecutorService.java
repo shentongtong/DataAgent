@@ -258,4 +258,8 @@ public class LocalCodePoolExecutorService extends AbstractCodePoolExecutorServic
 		return 60 * 1000;
 	}
 
+	@Override
+	public TaskResponse runTask(TaskRequestJava request) {
+		return null;
+	}
 }

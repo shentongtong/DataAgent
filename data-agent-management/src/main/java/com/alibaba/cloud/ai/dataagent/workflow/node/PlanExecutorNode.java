@@ -44,9 +44,12 @@ import static com.alibaba.cloud.ai.dataagent.common.constant.Constant.*;
 public class PlanExecutorNode implements NodeAction {
 
 	// Supported node types
-	private static final Set<String> SUPPORTED_NODES = Set.of(SQL_GENERATE_NODE, PYTHON_GENERATE_NODE,
-			REPORT_GENERATOR_NODE);
 
+/*	private static final Set<String> SUPPORTED_NODES = Set.of(SQL_GENERATE_NODE, PYTHON_GENERATE_NODE,
+			REPORT_GENERATOR_NODE);*/
+
+	private static final Set<String> SUPPORTED_NODES = Set.of(SQL_GENERATE_NODE, JAVA_GENERATE_NODE,
+			REPORT_GENERATOR_NODE);
 	@Override
 	public Map<String, Object> apply(OverAllState state) throws Exception {
 		// TODO 待优化，校验应该在生成计划之后而不是这里，这里导致每次运行一个计划都校验一次
@@ -152,9 +155,14 @@ public class PlanExecutorNode implements NodeAction {
 				}
 				break;
 
-			case PYTHON_GENERATE_NODE:
+			/*case PYTHON_GENERATE_NODE:
 				if (!StringUtils.hasText(step.getToolParameters().getInstruction())) {
 					return "Validation failed: Python generation node is missing instruction in step " + step.getStep();
+				}
+				break;*/
+			case JAVA_GENERATE_NODE:
+				if (!StringUtils.hasText(step.getToolParameters().getInstruction())) {
+					return "Validation failed: Java generation node is missing instruction in step " + step.getStep();
 				}
 				break;
 

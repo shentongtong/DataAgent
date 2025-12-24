@@ -61,8 +61,12 @@ public class PromptConstant {
 		return new PromptTemplate(PromptLoader.loadPrompt("new-sql-generate"));
 	}
 
-	public static PromptTemplate getPlannerPromptTemplate() {
+/*	public static PromptTemplate getPlannerPromptTemplate() {
 		return new PromptTemplate(PromptLoader.loadPrompt("planner"));
+	}*/
+
+	public static PromptTemplate getPlannerPromptTemplate() {
+		return new PromptTemplate(PromptLoader.loadPrompt("planner-java"));
 	}
 
 	public static PromptTemplate getReportGeneratorPromptTemplate() {
@@ -83,6 +87,14 @@ public class PromptConstant {
 
 	public static PromptTemplate getPythonAnalyzePromptTemplate() {
 		return new PromptTemplate(PromptLoader.loadPrompt("python-analyze"));
+	}
+
+	public static PromptTemplate getJavaGeneratorPromptTemplate() {
+		return new PromptTemplate(PromptLoader.loadPrompt("java-generator"));
+	}
+
+	public static PromptTemplate getJavaAnalyzePromptTemplate() {
+		return new PromptTemplate(PromptLoader.loadPrompt("java-analyze"));
 	}
 
 	public static PromptTemplate getBusinessKnowledgePromptTemplate() {

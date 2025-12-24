@@ -16,6 +16,9 @@
 
 package com.alibaba.cloud.ai.dataagent.service.code;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 运行Python任务的容器池接口
  *
@@ -26,7 +29,13 @@ public interface CodePoolExecutorService {
 
 	TaskResponse runTask(TaskRequest request);
 
+	TaskResponse runTask(TaskRequestJava request);
+
 	record TaskRequest(String code, String input, String requirement) {
+
+	}
+
+	record TaskRequestJava(String code, String className, List<Map<String, String>> sqlResults) {
 
 	}
 

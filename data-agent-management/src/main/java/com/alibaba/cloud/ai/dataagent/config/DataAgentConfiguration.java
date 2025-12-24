@@ -158,6 +158,14 @@ public class DataAgentConfiguration implements DisposableBean {
 			keyStrategyHashMap.put(PYTHON_EXECUTE_NODE_OUTPUT, KeyStrategy.REPLACE);
 			keyStrategyHashMap.put(PYTHON_GENERATE_NODE_OUTPUT, KeyStrategy.REPLACE);
 			keyStrategyHashMap.put(PYTHON_ANALYSIS_NODE_OUTPUT, KeyStrategy.REPLACE);
+
+			//JAVA运行相关
+			keyStrategyHashMap.put(JAVA_IS_SUCCESS, KeyStrategy.REPLACE);
+			keyStrategyHashMap.put(JAVA_TRIES_COUNT, KeyStrategy.REPLACE);
+			keyStrategyHashMap.put(JAVA_EXECUTE_NODE_OUTPUT, KeyStrategy.REPLACE);
+			keyStrategyHashMap.put(JAVA_GENERATE_NODE_OUTPUT, KeyStrategy.REPLACE);
+			keyStrategyHashMap.put(JAVA_ANALYSIS_NODE_OUTPUT,KeyStrategy.REPLACE);
+
 			// NL2SQL相关
 			keyStrategyHashMap.put(IS_ONLY_NL2SQL, KeyStrategy.REPLACE);
 			// Human Review keys
@@ -178,9 +186,12 @@ public class DataAgentConfiguration implements DisposableBean {
 			.addNode(PLANNER_NODE, nodeBeanUtil.getNodeBeanAsync(PlannerNode.class))
 			.addNode(PLAN_EXECUTOR_NODE, nodeBeanUtil.getNodeBeanAsync(PlanExecutorNode.class))
 			.addNode(SQL_EXECUTE_NODE, nodeBeanUtil.getNodeBeanAsync(SqlExecuteNode.class))
-			.addNode(PYTHON_GENERATE_NODE, nodeBeanUtil.getNodeBeanAsync(PythonGenerateNode.class))
-			.addNode(PYTHON_EXECUTE_NODE, nodeBeanUtil.getNodeBeanAsync(PythonExecuteNode.class))
-			.addNode(PYTHON_ANALYZE_NODE, nodeBeanUtil.getNodeBeanAsync(PythonAnalyzeNode.class))
+			// .addNode(PYTHON_GENERATE_NODE, nodeBeanUtil.getNodeBeanAsync(PythonGenerateNode.class))
+			// .addNode(PYTHON_EXECUTE_NODE, nodeBeanUtil.getNodeBeanAsync(PythonExecuteNode.class))
+			// .addNode(PYTHON_ANALYZE_NODE, nodeBeanUtil.getNodeBeanAsync(PythonAnalyzeNode.class))
+			.addNode(JAVA_GENERATE_NODE, nodeBeanUtil.getNodeBeanAsync(JavaGenerateNode.class))
+			.addNode(JAVA_EXECUTE_NODE, nodeBeanUtil.getNodeBeanAsync(JavaExecuteNode.class))
+			.addNode(JAVA_ANALYZE_NODE, nodeBeanUtil.getNodeBeanAsync(JavaAnalyzeNode.class))
 			.addNode(REPORT_GENERATOR_NODE, nodeBeanUtil.getNodeBeanAsync(ReportGeneratorNode.class))
 			.addNode(SEMANTIC_CONSISTENCY_NODE, nodeBeanUtil.getNodeBeanAsync(SemanticConsistencyNode.class))
 			.addNode(HUMAN_FEEDBACK_NODE, nodeBeanUtil.getNodeBeanAsync(HumanFeedbackNode.class));
@@ -202,17 +213,33 @@ public class DataAgentConfiguration implements DisposableBean {
 			// execution
 			.addEdge(PLANNER_NODE, PLAN_EXECUTOR_NODE)
 			// python nodes
-			.addEdge(PYTHON_GENERATE_NODE, PYTHON_EXECUTE_NODE)
+			/*.addEdge(PYTHON_GENERATE_NODE, PYTHON_EXECUTE_NODE)
 			.addConditionalEdges(PYTHON_EXECUTE_NODE, edge_async(new PythonExecutorDispatcher()),
 					Map.of(PYTHON_ANALYZE_NODE, PYTHON_ANALYZE_NODE, END, END, PYTHON_GENERATE_NODE,
 							PYTHON_GENERATE_NODE))
-			.addEdge(PYTHON_ANALYZE_NODE, PLAN_EXECUTOR_NODE)
+			.addEdge(PYTHON_ANALYZE_NODE, PLAN_EXECUTOR_NODE)*/
+				// java nodes
+			.addEdge(JAVA_GENERATE_NODE, JAVA_EXECUTE_NODE)
+			.addConditionalEdges(JAVA_EXECUTE_NODE, edge_async(new JavaExecutorDispatcher()),
+					Map.of(JAVA_ANALYZE_NODE, JAVA_ANALYZE_NODE, END, END, JAVA_GENERATE_NODE,
+							JAVA_GENERATE_NODE))
+			.addEdge(JAVA_ANALYZE_NODE, PLAN_EXECUTOR_NODE)
 			// The dispatcher at PlanExecutorNode will decide the next step
-			.addConditionalEdges(PLAN_EXECUTOR_NODE, edge_async(new PlanExecutorDispatcher()), Map.of(
+			/*.addConditionalEdges(PLAN_EXECUTOR_NODE, edge_async(new PlanExecutorDispatcher()), Map.of(
 					// If validation fails, go back to PlannerNode to repair
 					PLANNER_NODE, PLANNER_NODE,
 					// If validation passes, proceed to the correct execution node
 					SQL_GENERATE_NODE, SQL_GENERATE_NODE, PYTHON_GENERATE_NODE, PYTHON_GENERATE_NODE,
+					REPORT_GENERATOR_NODE, REPORT_GENERATOR_NODE,
+					// If human review is enabled, go to human_feedback node
+					HUMAN_FEEDBACK_NODE, HUMAN_FEEDBACK_NODE,
+					// If max repair attempts are reached, end the process
+					END, END))*/
+			.addConditionalEdges(PLAN_EXECUTOR_NODE, edge_async(new PlanExecutorDispatcher()), Map.of(
+					// If validation fails, go back to PlannerNode to repair
+					PLANNER_NODE, PLANNER_NODE,
+					// If validation passes, proceed to the correct execution node
+					SQL_GENERATE_NODE, SQL_GENERATE_NODE, JAVA_GENERATE_NODE, JAVA_GENERATE_NODE,
 					REPORT_GENERATOR_NODE, REPORT_GENERATOR_NODE,
 					// If human review is enabled, go to human_feedback node
 					HUMAN_FEEDBACK_NODE, HUMAN_FEEDBACK_NODE,

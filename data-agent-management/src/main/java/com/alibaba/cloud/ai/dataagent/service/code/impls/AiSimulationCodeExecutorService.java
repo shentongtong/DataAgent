@@ -62,4 +62,9 @@ public class AiSimulationCodeExecutorService implements CodePoolExecutorService 
 		return TaskResponse.success(output);
 	}
 
+	@Override
+	public TaskResponse runTask(TaskRequestJava request) {
+		return null;
+	}
+
 }

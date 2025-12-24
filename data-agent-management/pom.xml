@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-ai-alibaba-data-agent-management</artifactId>
+    <artifactId>data-agent-management</artifactId>
     <name>Spring AI Alibaba DataAgent Management</name>
     <url>https://github.com/alibaba/spring-ai-alibaba</url>
     <scm>

@@ -24,6 +24,6 @@ package com.alibaba.cloud.ai.dataagent.common.enums;
  */
 public enum CodePoolExecutorEnum {
 
-	DOCKER, CONTAINERD, KATA, AI_SIMULATION, LOCAL;
+	DOCKER, CONTAINERD, KATA, AI_SIMULATION, LOCAL, LOCAL_JAVA;
 
 }
