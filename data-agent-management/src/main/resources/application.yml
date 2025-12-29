@@ -65,6 +65,8 @@ spring:
 #          code-pool-executor: local
           # 运行Java代码的环境
           code-pool-executor: local_java
+          # Python执行的最大重试次数
+          python-max-tries-count: 5
         file:
           type: local
           path-prefix: data-agent
@@ -88,6 +90,7 @@ spring:
       enabled: true
 
 mybatis:
+
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
