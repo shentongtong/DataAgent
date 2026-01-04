@@ -83,7 +83,7 @@ public class JavaGenerateNode implements NodeAction {
 		int triesCount = StateUtil.getObjectValue(state, JAVA_TRIES_COUNT, Integer.class, MAX_TRIES_COUNT);
 
 		//准备SQL数据文件作为System.in输入
-		prepareSQLInputData(Paths.get("D:\\WorkProject\\AI\\DataAgent\\spring-ai-data-agent-java\\src\\main\\resources\\generateJavaFile"), sqlResults);
+		prepareSQLInputData(Paths.get("D:\\WorkProject\\AI\\alDataAgent\\spring-ai-data-agent-java\\src\\main\\resources\\generateJavaFile"), sqlResults);
 
 		String userPrompt = StateUtil.getCanonicalQuery(state);
 		if (!codeRunSuccess) {

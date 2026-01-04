@@ -190,7 +190,7 @@ public class LocalCodePoolJavaExecutorService extends AbstractCodePoolJavaExecut
      */
     protected Path createTempDirectory() throws IOException {
         // 直接在此处设置自定义目录路径
-        String customBaseDir = "D:\\WorkProject\\AI\\DataAgent\\spring-ai-data-agent-java\\src\\main\\java\\com\\run\\generateJavaFile";
+        String customBaseDir = "D:\\WorkProject\\AI\\alDataAgent\\spring-ai-data-agent-java\\src\\main\\java\\com\\run\\generateJavaFile";
         Path basePath = Paths.get(customBaseDir);
 
         if (!Files.exists(basePath)) {
@@ -217,7 +217,7 @@ public class LocalCodePoolJavaExecutorService extends AbstractCodePoolJavaExecut
     }
 
     private final String mavenAddress = "D:\\Work Program Files\\maven\\apache-maven-3.6.3\\bin\\mvn.cmd";
-    private final String pomAddress = "D:\\WorkProject\\AI\\DataAgent\\spring-ai-data-agent-java\\pom.xml";
+    private final String pomAddress = "D:\\WorkProject\\AI\\alDataAgent\\spring-ai-data-agent-java\\pom.xml";
 
     public boolean compileAndRunClass(String className) {
         try {
@@ -481,7 +481,7 @@ public class LocalCodePoolJavaExecutorService extends AbstractCodePoolJavaExecut
     private static void createMavenProject(Path tempDir, List<Map<String, String>> mavenDeps,String className) throws IOException {
         // 创建pom.xml
         String pomContent = generatePomXml(mavenDeps,className);
-        Files.write(Path.of("D:\\WorkProject\\AI\\DataAgent\\spring-ai-data-agent-java\\pom.xml"), pomContent.getBytes());
+        Files.write(Path.of("D:\\WorkProject\\AI\\alDataAgent\\spring-ai-data-agent-java\\pom.xml"), pomContent.getBytes());
     }
 
 

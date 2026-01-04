@@ -34,14 +34,21 @@ spring:
 #        options:
 #          model: text-embedding-v4
     openai:
-      api-key: 9422d24f1a9040a9ac9eee57563e6cfe
-      base-url: https://ds.ai.sinopec.com/qw-72b
+#      api-key: 9422d24f1a9040a9ac9eee57563e6cfe
+      api-key: b3aedea88a6d459aa2abd376f5303cdf
+#      base-url: https://ds.ai.sinopec.com/qw-72b
+      base-url: https://ds.ai.sinopec.com/ds-v3
       chat:
         options:
-          model: Qwen2.5-72B
-          max-tokens: 8192
-          temperature: 0.6
-          top-p: 0.95
+#          model: Qwen2.5-72B
+#          max-tokens: 8192
+#          temperature: 0.6
+#          top-p: 0.95
+          model: DeepSeek-V3
+          temperature: 0.7
+          top_p: 0.8
+          max_tokens: 3000
+
     embedding:
       transformer:
         onnx:

@@ -367,7 +367,7 @@
       const requestOptions = ref({
         humanFeedback: false,
         nl2sqlOnly: false,
-        plainReport: false,
+        plainReport: true,
       });
 
       // 监听NL2SQL开关变化
